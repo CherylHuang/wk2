@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>chinese1</key>
+	<string>3D遊戲程式設計中文字型產生範例</string>
+  <key>chinese2</key>
+  <string>記得要設定成 unicode 方式儲存</string>
+</dict>
+</plist>

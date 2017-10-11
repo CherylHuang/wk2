@@ -4,6 +4,11 @@
 
 USING_NS_CC;
 
+//bool _bOnTouched = false;
+//float _fCount = 0;
+//float _fAngle = 0;
+//Sprite *_bean01;
+
 Scene* Scene101::createScene()
 {
 	// 'scene' is an autorelease object
@@ -18,6 +23,8 @@ Scene* Scene101::createScene()
 	// return the scene
 	return scene;
 }
+
+
 
 // on "init" you need to initialize your instance
 bool Scene101::init()
@@ -37,6 +44,11 @@ bool Scene101::init()
 	Sprite *bkimage = Sprite::create(HOME_BACKGROUND);  // 使用 create 函式,給予檔名即可
 	bkimage->setPosition(Vec2(visibleSize.width / 2 + origin.x, visibleSize.height / 2 + origin.y)); // 位置通常放置在螢幕正中間
 	this->addChild(bkimage, 0);
+
+	//放入角色
+	//Sprite *bean01 = Sprite::create("scene101/bean1_01.png");  // 使用 create 函式,給予檔名即可
+	_bean01->setPosition(Vec2(330, 240)); // 位置通常放置在螢幕正中間
+	this->addChild(_bean01, 0);
 
 	// 自行增加 sprite 將 bean01.png 到螢幕正中間
 
@@ -63,8 +75,8 @@ bool Scene101::init()
 	auto strings = FileUtils::getInstance()->getValueMapFromFile("scene101/strings.xml");
 	std::string str1 = strings["chinese1"].asString();
 	std::string str2 = strings["chinese2"].asString();
-	auto label2 = Label::createWithBMFont("fonts/hansans48.fnt", str1);
-	auto label3 = Label::createWithBMFont("fonts/hansans48.fnt", str2);
+	auto label2 = Label::createWithBMFont("fonts/test.fnt", str1);
+	auto label3 = Label::createWithBMFont("fonts/test.fnt", str2);
 	size = label2->getContentSize();
 	label2->setColor(Color3B(255, 238, 217));
 	label2->setPosition(Vec2(origin.x + visibleSize.width / 2, origin.y + visibleSize.height - 80 - size.height));
@@ -110,9 +122,20 @@ bool Scene101::init()
 	return true;
 }
 
+Scene101::Scene101() {
+	_bOnTouched = false;
+	_fCount = 0;
+	_fAngle = 0;
+	_bean01 = Sprite::create("scene101/bean1_01.png");
+}
+
 void Scene101::doStep(float dt)  // OnFrameMove
 {
-
+	if (_bOnTouched) {
+		_fCount += dt;
+		_fAngle = _fCount * 180; //兩秒一圈
+		_bean01->setRotation(_fAngle);
+	}
 }
 
 bool  Scene101::onTouchBegan(cocos2d::Touch *pTouch, cocos2d::Event *pEvent)//觸碰開始事件
@@ -128,6 +151,8 @@ bool  Scene101::onTouchBegan(cocos2d::Touch *pTouch, cocos2d::Event *pEvent)//�
 		unscheduleAllCallbacks();
 		Director::getInstance()->end();
 	}
+
+	_bOnTouched = !_bOnTouched;
 
 	return true;
 }

@@ -13,6 +13,11 @@ private:
 	cocos2d::Rect    rectReplay;
 	cocos2d::Rect    rectReturn;
 
+	bool _bOnTouched;
+	float _fCount;
+	float _fAngle;
+	cocos2d::Sprite *_bean01;
+
 	int  _sceneno;
 	char _cSceneNo[10];
 
@@ -21,6 +26,9 @@ public:
 
     virtual bool init();
 	void doStep(float dt);
+	Scene101();
+
+
 
 	//Ä²¸I
 	cocos2d::EventListenerTouchOneByOne *_listener1;

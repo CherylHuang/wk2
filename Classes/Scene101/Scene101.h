@@ -17,7 +17,7 @@ private:
 	float _fCount;
 	float _fAngle;
 	cocos2d::Sprite *_bean01;
-
+	//
 	int  _sceneno;
 	char _cSceneNo[10];
 
